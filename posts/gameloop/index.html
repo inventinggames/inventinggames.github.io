@@ -7,8 +7,8 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="description" content="Before we speak about a Game Loop I would like to look at some corner concepts.
-What is a Computer Program? What a strange question? Everyone knows the answer! I can agree with that statement, but do you really know what is comuter program in essence? After ten years in software development and thousands lines of code I&amp;rsquo;m re-thinking this question.
- A computer program is a collection of instructions that performs a specific task when executed by a computer."/>
+What is a Computer Program? What a strange question? Everyone knows the answer! I can agree with that statement, but do you really know what comuter program is in essence? After ten years in software development and thousands lines of code I&amp;rsquo;m re-thinking this question.
+ A computer program is a collection of instructions that perform a specific task when executed by a computer."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="/posts/gameloop/" />
@@ -98,19 +98,19 @@ What is a Computer Program? What a strange question? Everyone knows the answer! 
 
 <h2 id="what-is-a-computer-program">What is a Computer Program?</h2>
 
-<p>What a strange question? Everyone knows the answer! I can agree with that statement, but do you really know what is comuter program in essence? After ten years in software development and thousands lines of code I&rsquo;m re-thinking this question.</p>
+<p>What a strange question? Everyone knows the answer! I can agree with that statement, but do you really know what comuter program is in essence? After ten years in software development and thousands lines of code I&rsquo;m re-thinking this question.</p>
 
 <blockquote>
-<p>A computer program is a collection of instructions that performs a specific task when executed by a computer.</p>
+<p>A computer program is a collection of instructions that perform a specific task when executed by a computer.</p>
 
 <p><strong>— Wikipedia.</strong></p>
 </blockquote>
 
-<p>To understand this definition I propose you to return to the past and look at Punhed Cards that were used as a source code for &ldquo;Big Iron Machines&rdquo;. The punched card was a pasteboard card with holes aligned by the columns, quantity of which could vary based on a card type. Originally, each individual hole on the card could contain the answer to a separate yes/no question, but further organization by the columns allowed to indicate digits and characters of text. For example, one hole in the column could represent 1, two holes could represent 2 and so on. I don&rsquo;t think that we need to dive deeper in the details, just imagine that one card represented an instruction that the machine should do, for example, to add one number to another. In such a way, a set of cards that are sequentaly loaded to &ldquo;Big Iron Machines&rdquo; represented a computer program. The main point here is the program was started when the first card was loaded and was ended as soon as the last one was processed.</p>
+<p>To understand this definition I propose you to return to the past and look at Punhed Cards that were used as a source code for &ldquo;Big Iron Machines&rdquo;. The punched card was a pasteboard card with holes aligned by the columns, quantity of which could vary based on a card type. Originally, each individual hole on the card could contain the answer to a separate yes/no question, but further organization by the columns allowed to indicate digits and characters of text. For example, one hole in the column could represent 1, two holes could represent 2 and so on. I don&rsquo;t think that we need to dive deeper in the details, just imagine that one card represented an instruction that the machine had to do, for example, to add one number to another. In such a way, a set of cards that are sequentaly loaded to &ldquo;Big Iron Machines&rdquo; represented a computer program. The main point here is the program started when the first card was loaded and ended as soon as the last one was processed.</p>
 
 <p><img src="/img/Punch_Card_Programm.jpg#center" alt="Punchcard" /></p>
 
-<p>You can be surprised, but there is no change ourdays! The computer program still works in the same way! Powerfull laptops replaces &ldquo;Big Iron Machines&rdquo;, numerous file types are used instead of cards. But the program ends as soon as instructions end. Don&rsquo;t belive me? Just write a simple console application that displays &ldquo;Hello World!&rdquo;.</p>
+<p>You can be surprised, but there is no change nowadays! The computer program still works in the same way! Powerfull laptops replaces &ldquo;Big Iron Machines&rdquo;, numerous file types are used instead of cards. But the program ends as soon as instructions end. You don&rsquo;t believe me? Just write a simple console application that displays &ldquo;Hello World!&rdquo;.</p>
 
 <pre><code class="language-csharp">// C#
 
@@ -123,7 +123,7 @@ class Program
 }
 </code></pre>
 
-<p>Have you seen the text when you run the application? I haven&rsquo;t. The program has ended and has been closed earlier than I could understand what had happened.</p>
+<p>Have you seen the text when you run the application? I haven&rsquo;t. The program had ended and had closed earlier than I could understand what happened.</p>
 
     </div>
     
