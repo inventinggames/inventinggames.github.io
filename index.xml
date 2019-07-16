@@ -22,21 +22,14 @@
     </item>
     
     <item>
-      <title>Any</title>
-      <link>/posts/any/</link>
-      <pubDate>Sun, 14 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/any/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Game Loop</title>
       <link>/posts/gameloop/</link>
       <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/gameloop/</guid>
-      <description></description>
+      <description>Before we speak about a Game Loop I would like to look at some corner concepts.
+What is a Computer Program? What a strange question? Everyone knows the answer! I can agree with that statement, but do you really know what is comuter program in essence? After ten years in software development and thousands lines of code I&amp;rsquo;m re-thinking this question.
+ A computer program is a collection of instructions that performs a specific task when executed by a computer.</description>
     </item>
     
     <item>
