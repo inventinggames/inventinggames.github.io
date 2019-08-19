@@ -1,5 +1,6 @@
 .pagination__buttons{
     justify-content: space-between;
+    padding-bottom: 15px;
 }
 
 img[src$='#center'] {
