@@ -27,7 +27,7 @@
       <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/gameloop/</guid>
-      <description>Before we speak about a Game Loop I would like to look at some corner concepts.
+      <description>Before I provide you with a definition of a Game Loop I would like to look at some corner concepts.
 What is a Computer Program? What a strange question? Everyone knows the answer! I can agree with that statement, but do you really know what comuter program is in essence? After ten years in software development and thousands lines of code I&amp;rsquo;m re-thinking this question.
  A computer program is a collection of instructions that perform a specific task when executed by a computer.</description>
     </item>
