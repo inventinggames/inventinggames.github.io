@@ -7,7 +7,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="description" content="Before I provide you with a definition of a Game Loop I would like to look at some corner concepts.
-What is a Computer Program? What a strange question? Everyone knows the answer! I can agree with that statement, but do you really know what comuter program is in essence? After ten years in software development and thousands lines of code I&amp;rsquo;m re-thinking this question.
+What is a Computer Program? What a strange question? Everyone knows the answer! I can agree with that statement, but do you really know what computer program is in essence? After ten years in software development and thousands lines of code I&amp;rsquo;m re-thinking this question.
  A computer program is a collection of instructions that perform a specific task when executed by a computer."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
@@ -98,7 +98,7 @@ What is a Computer Program? What a strange question? Everyone knows the answer! 
 
 <h2 id="what-is-a-computer-program">What is a Computer Program?</h2>
 
-<p>What a strange question? Everyone knows the answer! I can agree with that statement, but do you really know what comuter program is in essence? After ten years in software development and thousands lines of code I&rsquo;m re-thinking this question.</p>
+<p>What a strange question? Everyone knows the answer! I can agree with that statement, but do you really know what computer program is in essence? After ten years in software development and thousands lines of code I&rsquo;m re-thinking this question.</p>
 
 <blockquote>
 <p>A computer program is a collection of instructions that perform a specific task when executed by a computer.</p>
@@ -127,9 +127,9 @@ class Program
 
 <h2 id="how-to-see-the-message">How to See the Message?</h2>
 
-<p>You can say that we need to add something like <code>Console.ReadKey()</code>. But, do you really think that this approach can be applied to a game? I don&rsquo;t. This command completely blocks our programm until the user press any button. Gennerally, the game is a world that lives independently on a user actions. The wind is blowing, the water is flowing, the monsters are getting closer and closer&hellip;</p>
+<p>You can say that we need to add something like <code>Console.ReadKey()</code>. But, do you really think that this approach can be applied to a game? I don&rsquo;t. This command completely blocks our programm until the user presses any button. Gennerally, the game is a world that lives independently of a user actions. The wind is blowing, the water is flowing, the monsters are getting closer and closer&hellip;</p>
 
-<p>How can we allow our program to handle all these things? The answer is simpler than you can image. It is the almost endless loop, each iteration of which represents a moment in a game live. In other word a picture on the screen that users see. Let&rsquo;s rewrite a little our program.</p>
+<p>How can we allow our program to handle all these things? The answer is simpler than you can imagine. It is almost endless loop, each iteration of which represents a moment in a game live, in other words, a picture on the screen that users see. Let&rsquo;s rewrite a little our program.</p>
 
 <pre><code class="language-csharp">// C#
 
@@ -195,9 +195,9 @@ class Program
 }
 </code></pre>
 
-<p>Now we have a wold reprepresented by letters that changes their case in time. What the last thing left to make for our program to transform it to a game? Right! We need to allow the user to interact with the world.</p>
+<p>Now we have a world reprepresented by letters that changes their case in time. What is the last thing left to make for our program to transform it to a game? Right! We need to allow the user to interact with the world.</p>
 
-<h2 id="how-the-user-can-interact-with-world">How the User Can Interact with World?</h2>
+<h2 id="how-can-the-user-interact-with-world">How Can the User Interact with World?</h2>
 
 <p>I think that in our programm the user can change the direction in which the letters&rsquo; case is changed. For this we need to do the following:</p>
 
@@ -277,11 +277,11 @@ else
 }
 </code></pre>
 
-<p>Congratulate, you have just created a game!</p>
+<p>Congratulations, you have just created a game!</p>
 
 <h2 id="what-is-a-game-loop">What is a Game Loop?</h2>
 
-<p>Game loop is a loop used by us in the main method of our program. It runs continuously during the program execution. Each turn of the loop processes user input without program blocking, updates the program&rsquo;s state, and redraws word that user see. Also, it tracks execution time of the turn to be synchronized with screen redrawing.</p>
+<p>Game loop is a loop used by us in the main method of our program. It runs continuously during the program execution. Each turn of the loop processes user input without program blocking, updates the program&rsquo;s state, and redraws word that user sees. Also, it tracks execution time of the turn to be synchronized with screen redrawing.</p>
 
     </div>
     
@@ -294,12 +294,17 @@ else
           </div>
           <div class="pagination__buttons">
             
-              <span></span>
-            
+              <span class="button previous">
+                <a href="/posts/gamedescription/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">Game Description</span>
+                </a>
+              </span>
+              
             
               <span class="button next">
-                <a href="/posts/gamebackground/">
-                  <span class="button__text">Game Background</span>
+                <a href="/posts/gameloopjs/">
+                  <span class="button__text">Game Loop in JavaScript</span>
                   <span class="button__icon">→</span>
                 </a>
               </span>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Site Under Construction on Inventing Games</title>
+    <title>Inventing Games</title>
     <link>/</link>
-    <description>Recent content in Site Under Construction on Inventing Games</description>
+    <description>Recent content on Inventing Games</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© {year}</copyright>
@@ -22,14 +22,32 @@
     </item>
     
     <item>
+      <title>Game Description</title>
+      <link>/posts/gamedescription/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/gamedescription/</guid>
+      <description>This article will be continuously updated to reflect changes in the game and to be aligned with other aticles.</description>
+    </item>
+    
+    <item>
       <title>Game Loop</title>
       <link>/posts/gameloop/</link>
       <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/gameloop/</guid>
       <description>Before I provide you with a definition of a Game Loop I would like to look at some corner concepts.
-What is a Computer Program? What a strange question? Everyone knows the answer! I can agree with that statement, but do you really know what comuter program is in essence? After ten years in software development and thousands lines of code I&amp;rsquo;m re-thinking this question.
+What is a Computer Program? What a strange question? Everyone knows the answer! I can agree with that statement, but do you really know what computer program is in essence? After ten years in software development and thousands lines of code I&amp;rsquo;m re-thinking this question.
  A computer program is a collection of instructions that perform a specific task when executed by a computer.</description>
+    </item>
+    
+    <item>
+      <title>Game Loop in JavaScript</title>
+      <link>/posts/gameloopjs/</link>
+      <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/gameloopjs/</guid>
+      <description>JS</description>
     </item>
     
     <item>
@@ -42,14 +60,12 @@ What is a Computer Program? What a strange question? Everyone knows the answer! 
     </item>
     
     <item>
-      <title>About</title>
+      <title></title>
       <link>/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>Hi there My name is Radek and I&amp;rsquo;m the author of this theme. I made it to help you present your ideas easier.
-We all know how hard is to start something on the web, especially these days. You need to prepare a bunch of stuff, configure them and when that’s done — create the content.
-This theme is pretty basic and covers all of the essentials. All you have to do is start typing!</description>
+      <description>Welcom to my blog! My name is Alexander Krupsky. I have worked as a SharePoint Tech Lead and .Net Solution Architect for a couple of the last years. I have had a lot of amaizing opportunities and great projects that allowed me to improve my knowladge and skills in wide range of fields. But, I have figured out that inspite of my good understanding of high-level design concepts I have a lack in low-level implementation details.</description>
     </item>
     
     <item>
