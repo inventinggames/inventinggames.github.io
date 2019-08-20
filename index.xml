@@ -22,12 +22,22 @@
     </item>
     
     <item>
-      <title>Game Description</title>
+      <title>Game Idea</title>
       <link>/posts/gamedescription/</link>
       <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/gamedescription/</guid>
       <description>This article will be continuously updated to reflect changes in the game made during implementation and to be aligned with other aticles.</description>
+    </item>
+    
+    <item>
+      <title>JavaScript Game’s Essentials</title>
+      <link>/posts/gameessentials/</link>
+      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/gameessentials/</guid>
+      <description>In this set of articles I review basic concepts related to a game development on JavaScript:
+ Game Loop article describes what game loop is and what it is used for. Game Loop in JavaScript article describes how the game loop is organized in JavaScript. Canvas article describes what is a canvas and how it is used.  </description>
     </item>
     
     <item>
