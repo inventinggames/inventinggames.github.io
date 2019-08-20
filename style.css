@@ -1,3 +1,7 @@
+.logo__cursor{
+    display: none;
+}
+
 .pagination__buttons{
     justify-content: space-between;
     padding-bottom: 15px;
