@@ -43,23 +43,5 @@ Intent I don&amp;rsquo;t make a goal to create a game that will be world-wide po
  Game Loop article describes what a game loop is and what it is used for. Game Loop in JavaScript article describes how the game loop is organized in JavaScript. Canvas article describes what a canvas is and how it is used.</description>
     </item>
     
-    <item>
-      <title>Game Background</title>
-      <link>/posts/gamebackground/</link>
-      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/gamebackground/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Game Loop in JavaScript</title>
-      <link>/posts/gameloopjs/</link>
-      <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/gameloopjs/</guid>
-      <description>JS</description>
-    </item>
-    
   </channel>
 </rss>

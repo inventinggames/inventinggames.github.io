@@ -43,59 +43,5 @@ Intent I don&amp;rsquo;t make a goal to create a game that will be world-wide po
  Game Loop article describes what a game loop is and what it is used for. Game Loop in JavaScript article describes how the game loop is organized in JavaScript. Canvas article describes what a canvas is and how it is used.</description>
     </item>
     
-    <item>
-      <title>Game Background</title>
-      <link>/posts/gamebackground/</link>
-      <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/gamebackground/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Game Loop in JavaScript</title>
-      <link>/posts/gameloopjs/</link>
-      <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/gameloopjs/</guid>
-      <description>JS</description>
-    </item>
-    
-    <item>
-      <title>Showcase</title>
-      <link>/showcase/</link>
-      <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/showcase/</guid>
-      <description>Header 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante. Donec quis dolor nec nunc mollis interdum vel in purus. Sed vitae leo scelerisque, sollicitudin elit sed, congue ante. In augue nisl, vestibulum commodo est a, tristique porttitor est. Proin laoreet iaculis ornare. Nullam ut neque quam.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/about/</guid>
-      <description>Welcom to my blog! My name is Alexander Krupsky. I have worked as a SharePoint Tech Lead and .Net Solution Architect for a couple of the last years. I have had a lot of amaizing opportunities and great projects that allowed me to improve my knowladge and skills in wide range of fields. But, I have figured out that inspite of my good understanding of high-level design concepts I have a lack in low-level implementation details.</description>
-    </item>
-    
-    <item>
-      <title>Archive</title>
-      <link>/archive/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/archive/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Content</title>
-      <link>/content/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/content/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>
