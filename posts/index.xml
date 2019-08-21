@@ -37,8 +37,8 @@ Intent I don&amp;rsquo;t make a goal to create a game that will be world-wide po
       <pubDate>Mon, 15 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/gameessentials/</guid>
-      <description>In this set of articles I review basic concepts related to game development on JavaScript:
- Game Loop article describes what a game loop is and what it is used for. Game Loop in JavaScript article describes how the game loop is organized in JavaScript. Canvas article describes what a canvas is and how it is used.  </description>
+      <description>Before we can start the implementation of the gameplay we have to understand how games work under the hood and figure out how the game engine can be implemented. In this set of articles I review basic concepts related to both these questions in context of JavaScript:
+ Game Loop article describes what a game loop is and what it is used for. Game Loop in JavaScript article describes how the game loop is organized in JavaScript.</description>
     </item>
     
     <item>
