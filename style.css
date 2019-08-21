@@ -17,3 +17,11 @@ img[src$='#center'] {
 p{
     text-align: justify;
 }
+
+.warning{
+    color: rgb(128,0,0);
+}
+
+.dark-theme .warning{
+    color: #16BAC5;
+}
