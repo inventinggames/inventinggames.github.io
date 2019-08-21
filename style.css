@@ -20,6 +20,20 @@ p{
 
 .warning{
     color: rgb(128,0,0);
+    display: flex;
+    align-items: center;
+}
+
+.warning .icon{
+    padding: 0 20px 0px 10px;
+}
+
+.warning .icon path{
+    fill: rgb(128,0,0);
+}
+
+.dark-theme .warning .icon path{
+    fill: #16BAC5;
 }
 
 .dark-theme .warning{
