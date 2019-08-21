@@ -30,7 +30,7 @@ What is a Computer Program? What a strange question? Everyone knows the answer! 
       
       <guid>/posts/gamedescription/</guid>
       <description>This article will be continuously updated to reflect changes made in the game during implementation and to be aligned with other articles.  
-Intent I don&amp;rsquo;t make a goal to create a game that will be world-wide popular. Moreover, I realize that game creation alone is a really hard task and generally it is done by a game studios. Therefore, I will focus on plain and something simple like oldfashion 2D games.</description>
+Intention I don&amp;rsquo;t make a goal to create a game that will be world-wide popular. Moreover, I realize that game creation alone is really a hard task and generally it is done by a game studio. Therefore, I will focus on something plain and simple like oldfashion 2D games.</description>
     </item>
     
     <item>
@@ -39,7 +39,7 @@ Intent I don&amp;rsquo;t make a goal to create a game that will be world-wide po
       <pubDate>Fri, 16 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/gameessentials/</guid>
-      <description>Implementation of the gameplay require from us understanding of how games work under the hood and what game engine is. In this set of articles I review basic concepts related to both these topics in a context of JavaScript:
+      <description>Implementation of the gameplay requires from us understanding of how games work under the hood and what a game engine is. In this set of articles I&amp;rsquo;ll review basic concepts related to both these topics in the context of JavaScript:
  Game Loop article describes what a game loop is and what it is used for. Game Loop in JavaScript article describes how the game loop is organized in JavaScript. Canvas article describes what a canvas is and how it is used.</description>
     </item>
     
