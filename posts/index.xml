@@ -30,7 +30,7 @@ What is a Computer Program? What a strange question? Everyone knows the answer! 
       
       <guid>/posts/gamedescription/</guid>
       <description>This article will be continuously updated to reflect changes made in the game during implementation and to be aligned with other articles.  
-Intention I don&amp;rsquo;t make a goal to create a game that will be world-wide popular. Moreover, I realize that game creation alone is really a hard task and generally it is done by a game studio. Therefore, I will focus on something plain and simple like oldfashion 2D games.</description>
+Intention. I don&amp;rsquo;t make a goal to create a game that will be world-wide popular. Moreover, I realize that game creation alone is really a hard task and generally it is done by a game studio. Therefore, I will focus on something plain and simple like oldfashion 2D games.</description>
     </item>
     
     <item>
@@ -40,7 +40,17 @@ Intention I don&amp;rsquo;t make a goal to create a game that will be world-wide
       
       <guid>/posts/gameessentials/</guid>
       <description>Implementation of the gameplay requires from us understanding of how games work under the hood and what a game engine is. In this set of articles I&amp;rsquo;ll review basic concepts related to both these topics in the context of JavaScript:
- Game Loop article describes what a game loop is and what it is used for. Game Loop in JavaScript article describes how the game loop is organized in JavaScript. Canvas article describes what a canvas is and how it is used.</description>
+ Computer Graphics articles describes what a frame is and why the frame rate is so important Game Loop article describes what a game loop is and what it is used for.</description>
+    </item>
+    
+    <item>
+      <title>Computer Graphics</title>
+      <link>/posts/frames/</link>
+      <pubDate>Sat, 13 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/frames/</guid>
+      <description>When I was writing articles related to a game loop I realized that they don&amp;rsquo;t describe what a frame is and why the frame rate is so important. To fix this, I decided to write this article and place it in the begining.
+Frame. Wikipedia gives quite short and understandable definitions for different things, therefore I use it with great pleasure. So, what does it tell about a frame?</description>
     </item>
     
   </channel>

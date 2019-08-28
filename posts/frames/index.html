@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Computer Graphics :: Inventing Games</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="When I was writing articles related to a game loop I realized that they don&amp;rsquo;t describe what a frame is and why the frame rate is so important. To fix this, I decided to write this article and place it in the begining.
+Frame. Wikipedia gives quite short and understandable definitions for different things, therefore I use it with great pleasure. So, what does it tell about a frame?"/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="/posts/frames/" />
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+
+<link rel="stylesheet" href="/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Computer Graphics"/>
+<meta name="twitter:description" content="Computer Graphics"/>
+
+
+
+<meta property="og:title" content="Computer Graphics" />
+<meta property="og:description" content="Computer Graphics" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/frames/" />
+<meta property="article:published_time" content="2019-07-13T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-07-13T00:00:00&#43;00:00"/><meta property="og:site_name" content="Inventing Games" />
+
+
+
+<meta name="google-site-verification" content="HzRsPnBnAbhj4LSwxeW2lGGmq5cj8yZYsuDn9qO-9xo" />
+
+  </head>
+  <body class="">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
+  <polyline fill="none" stroke="#000" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">Inventing Games</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/#contents">Contents</a></li>
+        
+      
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/#contents">Contents</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  <div class="post">
+    <h2 class="post-title"><a href="/posts/frames/">Computer Graphics</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+            2019-07-13
+        </span>
+      
+      <span class="post-author">— Written by Alexander Krupsky</span>
+      
+    </div>
+
+    
+
+    
+
+    <div class="post-content">
+      
+
+<p>When I was writing articles related to a game loop I realized that they don&rsquo;t describe what a frame is and why the frame rate is so important. To fix this, I decided to write this article and place it in the begining.</p>
+
+<h1 id="frame">Frame.</h1>
+
+<p>Wikipedia gives quite short and understandable definitions for different things, therefore I use it with great pleasure. So, what does it tell about a frame?</p>
+
+<blockquote>
+<p>In filmmaking, video production, animation, and related fields, a <strong>frame</strong> is one of the many still images which compose the complete moving picture. The term is
+derived from the fact that, from the beginning of modern filmmaking toward the end of the 20th century, and in many places still up to the present, the single images
+have been recorded on a strip of photographic film that quickly increased in length, historically; each image on such a strip looks rather like a framed picture when
+examined individually.</p>
+
+<p><strong>— Wikipedia.</strong></p>
+</blockquote>
+
+<p>In game development the frame can be considered as a result of the code invocation, the main aim of which is to prepare one single picture.</p>
+
+<h1 id="frame-rate">Frame Rate.</h1>
+
+<p>I will not invent a definition for a frame rate, therefore let&rsquo;s look again what Wikipedia says.</p>
+
+<blockquote>
+<p>Frame rate (expressed in frames per second or FPS) is the frequency (rate) at which consecutive images called frames appear on a display. The term applies equally to
+film and video cameras, computer graphics, and motion capture systems. Frame rate may also be called the frame frequency, and be expressed in hertz.</p>
+
+<p><strong>— Wikipedia.</strong></p>
+</blockquote>
+
+<p>I don&rsquo;t have anything to add.</p>
+
+<h1 id="why-the-frame-rate-is-so-important">Why the Frame Rate is so Important?</h1>
+
+<p>When we look at a video display we think that an image on the screen is rendered at once as a solid picture. Of course, it is not true. In fact, video display renders a pixel at a time from left to right. When a row is finished the next one starts. Display does it so fast that we don&rsquo;t see it and percept the action as if the whole picture is drawn (frame).</p>
+
+<p>The interesting thing here is that somewhere something like two-dimensional array exists that holds the position and the color of each pixel. Do you think it is a good idea to change that array while it is iterated through to draw pixels on the screen? Probably, it is not. Best you can get is something like two pictures mixed up.</p>
+
+<p>To reduce this issue, double buffer pattern is used. The main idea of the pattern is to provide two arrays that hold the data. One array is accessible for a &lsquo;write&rsquo; operation (canvas buffer), another for a &lsquo;read&rsquo; (display buffer). At some point, these buffers are swapped (canvas buffer becomes display buffer and vice versa). Pretty simple? Yes, it is. In our case, numerous advanced graphics algorithms set values in the canvas buffer to prepare a next frame while at the same time a video driver gets values from the display buffer (current frame) to send them to a video display. Can we call a count of swap operations per second a frame rate? According to the definition above, we can. But a more intresting thing is that this frame rate is equal to 1/60th, 2/60th, 3/60th etc&hellip; of a second and applied to our video display independently of our code. What I mean. Just imagine that we have a code that draws rectangle and fills it with red or green color in rotation. You can be sure, this code will be executed incredibly fast. Let&rsquo;s take this time as 1 millisecond just for example. If we add the code in the loop, how often will the rectangles be drawn in our program? Simple calculation shows that 1 second divided to 1 millisecond is equal to 1000. 1000 times per second our code will set values to canvas buffer and only 1/60th, 2/60th, 3/60th etc&hellip; of a second the rectangle will be displayed on the screen. Who knows what color the rectangle will have? I don&rsquo;t. All that I can tell is that about 16-17 frames produced by code were skiped.</p>
+
+<p>Generally, there are few reasons why you need to synchronize your code frame rate with the rate of swap operations:</p>
+
+<ul>
+<li>To avoid flickers that can occur when our code writes a new frame to the canvas buffer and swap operation is performed.</li>
+<li>To avoid frame skips that, as it was described above, can occur when our code provides more frames than can be displayed.</li>
+</ul>
+
+<p>How to make synchronization? Without graphic engines, you can try to make some delays in the code or use built-in functions of the platforms that your game is targeted at.</p>
+
+    </div>
+    
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="/posts/gameessentials/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">JavaScript Game’s Essentials</span>
+                </a>
+              </span>
+              
+            
+              <span class="button next">
+                <a href="/posts/gameloop/">
+                  <span class="button__text">Game Loop</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+              
+          </div>
+        </div>
+      
+
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "inventinggames" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </div>
+
+      </div>
+      
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <div></div>
+      <div class="copyright">
+        <span>© 2019</span>   
+      </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

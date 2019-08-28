@@ -39,3 +39,10 @@ p{
 .dark-theme .warning{
     color: #16BAC5;
 }
+
+.js-example {
+    background: #212020!important;
+    color: white;
+    border-radius: 8px;
+    padding: 5px;
+}

@@ -6,7 +6,8 @@
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="description" content="JS"/>
+<meta name="description" content="Loops in JS. There are several posibilities to organize loops in JavasCript, the most common are:
+ for statement do &amp;hellip; while statement while statement  They are pretty known, therefore, I think, I will not describe them here. What I really want here to point is that these statements do not perfectly suit requirements of game development. There are a lot of thing that should be build around these statements manually, the maijor of which is a synchronization between a render method and a screen redrawing."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="/posts/gameloopjs/" />
@@ -117,7 +118,84 @@
     
 
     <div class="post-content">
-      <p>JS</p>
+      
+
+<h1 id="loops-in-js">Loops in JS.</h1>
+
+<p>There are several posibilities to organize loops in JavasCript, the most common are:</p>
+
+<ul>
+<li>for statement</li>
+<li>do &hellip; while statement</li>
+<li>while statement</li>
+</ul>
+
+<p>They are pretty known, therefore, I think, I will not describe them here. What I really want here to point is that these statements do not perfectly suit requirements of game development. There are a lot of thing that should be build around these statements manually, the maijor of which is a synchronization between a render method and a screen redrawing.</p>
+
+<p>If the default language loops can not help us, what to do? And, here is the answer: please, use setInterval and requestAnimationFrame functions.</p>
+
+<h1 id="setinterval-function">setInterval function.</h1>
+
+<p>What should we know about this function?</p>
+
+<blockquote>
+<p>The setInterval() method, offered on the Window and Worker interfaces, repeatedly calls a function or executes a code snippet, with a fixed time delay between each call.</p>
+
+<p><strong>— MDN web docs.</strong></p>
+</blockquote>
+
+<p><code>Fixed time delay between each call</code> sounds amaizing! Its mean that we can setup frames rate (how many frames can be displayed in a second; generally it is equal to 60) and be sure that each call will redraw a game state with the same interval. Lets see how we can create a game loop in it:</p>
+
+<pre><code class="language-js">//js
+
+setInterval(function(){
+    processInput();
+    changeState();
+    render();
+}, 
+1000/60); //60 frames per second
+
+</code></pre>
+
+<p>Cool, We done! Take your time&hellip; Lets see, <code>1000 / 60 = 1.6666666666666666... ms</code> that is not equal to 1/60th of second. It will be rounded to some closest value, but not the same. Moreovere, if your code requires more than <code>1.6666666666666666... ms</code> to be finished, the next loop turn will be run as soon as the previous is finished, in such a way, the frame rate will be affected. To examinate this behavior I proposes to create a simple html page and add the following.</p>
+
+<pre><code class="language-html">&lt;!--HTML--&gt;
+
+&lt;div class=&quot;js-example&quot;&gt;
+    &lt;span class=&quot;clear-frame-rate&quot;&gt;FPS: 0&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var last;
+   
+    var draw = function(){
+        var time = performance.now();
+        var frameTime = (time - last).toFixed(2);
+        last = time;
+
+        var span = document.getElementsByClassName('clear-frame-rate')[0];
+        span.innerText = 'FPS: ' + Math.round(1000/Number(frameTime));
+    }
+
+    var int = setInterval(draw, 1000/60);
+&lt;/script&gt;
+</code></pre>
+
+<p>If everithing is done correctly you should see random numbers from 61 to 67.</p>
+
+<div class="js-example">
+    <span class="clear-frame-rate">FPS: 0</span>
+</div>
+
+<script src="/js/setInt.js"></script>
+
+<p>This frame rate can lead to:</p>
+
+<ul>
+<li>Shears. it is when a new canvas buffer is presented to the display buffer midway through the display scan resulting in a shear line caused by the mismatched animation positions.</li>
+<li>Flickers. it is caused when the canvas buffer is presented to the display buffer before the canvas has been fully rendered.</li>
+<li>Frame skips. it is caused when the time between rendering frames is not in precise sync with the display hardware. Every so many frames a frame will be skipped producing inconsistent animation</li>
+</ul>
 
     </div>
     
@@ -138,13 +216,8 @@
               </span>
               
             
-              <span class="button next">
-                <a href="/posts/gamebackground/">
-                  <span class="button__text">Game Background</span>
-                  <span class="button__icon">→</span>
-                </a>
-              </span>
-              
+              <span></span>
+            
           </div>
         </div>
       

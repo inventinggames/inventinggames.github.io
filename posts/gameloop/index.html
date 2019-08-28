@@ -173,9 +173,9 @@ class Program
 }
 </code></pre>
 
-<p>If you run the program you will see nothing. It happens because our output <code>Console.Write(&quot;Hello Word!&quot;);</code> is not synchronized with screen redrawing that happens each 1/60th, 2/60th, 3/60th etc&hellip; of a second. Applying to our program, when the screen draws a new frame, <code>Console.Cear();</code> is invoked and we see empty window. The synchronization is out of scope this article, therefore we leave it for now and simply add <code>Thread.Sleep(1000);</code> line in the end of the loop.</p>
+<p>If you run the program you will see nothing. It happens because our output <code>Console.Write(&quot;Hello Word!&quot;);</code> is not synchronized with the video output (for more details please see <a href="/posts/frames">Computer Graphics</a> article).</p>
 
-<p>Is it a game loop? No, it isn&rsquo;t! To call the loop &ldquo;Game loop&rdquo; it should be able to do a couple more things. The first is to change the world.</p>
+<p>Can we call the loop above a game loop? No, we can&rsquo;t! To call the loop a &ldquo;Game loop&rdquo; it should be able to do a couple more things. The first is to change the world.</p>
 
 <h2 id="how-to-change-the-world">How to Change the World?</h2>
 
@@ -322,9 +322,9 @@ else
           <div class="pagination__buttons">
             
               <span class="button previous">
-                <a href="/posts/gameessentials/">
+                <a href="/posts/frames/">
                   <span class="button__icon">←</span>
-                  <span class="button__text">JavaScript Game’s Essentials</span>
+                  <span class="button__text">Computer Graphics</span>
                 </a>
               </span>
               
