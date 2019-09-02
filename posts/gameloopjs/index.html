@@ -7,7 +7,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="description" content="Loops in JS. There are several posibilities to organize loops in JavasCript, the most common are:
- for statement do &amp;hellip; while statement while statement  They are pretty known, therefore, I think, I will not describe them here. What I really want here to point is that these statements do not perfectly suit requirements of game development. There are a lot of thing that should be build around these statements manually, the maijor of which is a synchronization between a render method and a screen redrawing."/>
+ for statement do &amp;hellip; while statement while statement  They are pretty known, therefore, I think, I will not describe them here. What I really want to point here is that these statements do not perfectly suit requirements of game development. There are a lot of thing that should be built around these statements manually, the maijor of which is a frames synchronization (for more details about the synchronization please see Computer Graphics article)."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="/posts/gameloopjs/" />
@@ -33,8 +33,7 @@
 <meta property="og:description" content="Game Loop in JavaScript" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/gameloopjs/" />
-<meta property="article:published_time" content="2019-07-13T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2019-07-13T00:00:00&#43;00:00"/><meta property="og:site_name" content="Inventing Games" />
+<meta property="og:site_name" content="Inventing Games" />
 
 
 
@@ -105,10 +104,6 @@
     <h2 class="post-title"><a href="/posts/gameloopjs/">Game Loop in JavaScript</a></h2>
     <div class="post-meta">
       
-        <span class="post-date">
-            2019-07-13
-        </span>
-      
       <span class="post-author">— Written by Alexander Krupsky</span>
       
     </div>
@@ -130,9 +125,9 @@
 <li>while statement</li>
 </ul>
 
-<p>They are pretty known, therefore, I think, I will not describe them here. What I really want here to point is that these statements do not perfectly suit requirements of game development. There are a lot of thing that should be build around these statements manually, the maijor of which is a synchronization between a render method and a screen redrawing.</p>
+<p>They are pretty known, therefore, I think, I will not describe them here. What I really want to point here is that these statements do not perfectly suit requirements of game development. There are a lot of thing that should be built around these statements manually, the maijor of which is a frames synchronization (for more details about the synchronization please see <a href="/posts/frames">Computer Graphics</a> article).</p>
 
-<p>If the default language loops can not help us, what to do? And, here is the answer: please, use setInterval and requestAnimationFrame functions.</p>
+<p>If the default language loops can not help us, what to do? And, here is the answer: use setInterval and requestAnimationFrame functions.</p>
 
 <h1 id="setinterval-function">setInterval function.</h1>
 
@@ -144,7 +139,7 @@
 <p><strong>— MDN web docs.</strong></p>
 </blockquote>
 
-<p><code>Fixed time delay between each call</code> sounds amaizing! Its mean that we can setup frames rate (how many frames can be displayed in a second; generally it is equal to 60) and be sure that each call will redraw a game state with the same interval. Lets see how we can create a game loop in it:</p>
+<p><code>Fixed time delay between each call</code> sounds amaizing! Its mean that we can setup frames rate and be sure that each call will redraw a game state with the same interval. Lets see how we can create a game loop with its help:</p>
 
 <pre><code class="language-js">//js
 
@@ -181,21 +176,73 @@ setInterval(function(){
 &lt;/script&gt;
 </code></pre>
 
-<p>If everithing is done correctly you should see random numbers from 61 to 67.</p>
+<p>If everithing is done correctly you should see random numbers as in this interactive example:</p>
 
 <div class="js-example">
     <span class="clear-frame-rate">FPS: 0</span>
+    <button id="delay-button" style="float: right;height: 23px;">
+        <span style="margin-top: -5px;">Delay 20 ms</span>
+    </button>
+</div>
+
+<p>Unlike our code the interactive example can emulate delay in 20 milliseconds to provide you with understanding what frame rate will be in case where execution of code takes more that 1/60th of a second.</p>
+
+<p>Anyway, shown frame rates (with and without a delay) can lead to flikers and frame skips as it was discussed in the <a href="/posts/frames">Computer Graphics</a> article. Also, we need to think how we can synchronize several animation on the same page, each of which is run in its own setInterval function.</p>
+
+<p>How to deal with it? Nohow! Because it is not needed, JavaScript provides another amaizing function called requestAnimationFrame.</p>
+
+<h1 id="requestanimationframe-function">requestAnimationFrame function.</h1>
+
+<p>What is it?</p>
+
+<blockquote>
+<p>The window.requestAnimationFrame() method tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an
+animation before the next repaint.</p>
+
+<p><strong>— MDN web docs.</strong></p>
+</blockquote>
+
+<p>I have re-read this definisiont several times and each time its mean slinked away. Let&rsquo;s dive deeper here to undestand it better.</p>
+
+<p>Each page opened in a browser has a document associated with a browsing context. Each document has a list of animation frame callbacks and single animation frame callback identifier. Initially, the list is empty and the identifier is equal zero. When we define requestAnimationFrame function in our code we pass a callback as an argument of the function. This call back is pushed to the animation frame callbacks list. In he definition this process is mentioned as <code>tells the browser that you wish to perform an animation</code>.</p>
+
+<p>At the same time the browser regulary schedule a <strong>single</strong> task that samples all animations in the browser context. The task loops through each page and checks its visibility property. If a page is visible the tasks looks into the list of animation frame callbacks and invokes them side by side. If there are many callbacks or CPU is hard loaded, the browser can select a frame rate such that all of the animations can be run as smoothly as possible. When the task is finished, the animation frame callback identifier is increased by one. In the definition this process is mentioned as <code>the browser call a specified function to update an animation before the next repaint</code>.</p>
+
+<p>Do you see all the benefits provided by the function?</p>
+
+<ul>
+<li>We don&rsquo;t need wary about the frames synchronization</li>
+<li>All animation will be run at the same time</li>
+<li>If our page is not active right now the animation will not be run at all</li>
+</ul>
+
+<p>Lets see how it works. For this we need to remove setInterval function and re-write our draw method.</p>
+
+<pre><code class="language-js">//js
+
+var draw = function(time){
+    var frameTime = (time - last).toFixed(2);
+    last = time;
+    
+    var span = document.getElementsByClassName('clear-frame-rate')[0];
+    span.innerText = 'FPS: ' + Math.round(1000/Number(frameTime));
+
+    if (cFrame &lt; mFrames){
+        window.requestAnimationFrame(draw);
+    }
+}
+</code></pre>
+
+<p>If you run the code you should see something like this:</p>
+
+<div class="js-example">
+    <span class="anim-frame-rate">FPS: 0</span>
+    <button id="anim-delay-button" style="float: right;height: 23px;">
+        <span style="margin-top: -5px;">Delay 20 ms</span>
+    </button>
 </div>
 
 <script src="/js/setInt.js"></script>
-
-<p>This frame rate can lead to:</p>
-
-<ul>
-<li>Shears. it is when a new canvas buffer is presented to the display buffer midway through the display scan resulting in a shear line caused by the mismatched animation positions.</li>
-<li>Flickers. it is caused when the canvas buffer is presented to the display buffer before the canvas has been fully rendered.</li>
-<li>Frame skips. it is caused when the time between rendering frames is not in precise sync with the display hardware. Every so many frames a frame will be skipped producing inconsistent animation</li>
-</ul>
 
     </div>
     

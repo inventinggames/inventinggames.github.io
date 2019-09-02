@@ -53,5 +53,15 @@ Intention. I don&amp;rsquo;t make a goal to create a game that will be world-wid
  Computer Graphics articles describes what a frame is and why the frame rate is so important Game Loop article describes what a game loop is and what it is used for.</description>
     </item>
     
+    <item>
+      <title>Game Loop in JavaScript</title>
+      <link>/posts/gameloopjs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/gameloopjs/</guid>
+      <description>Loops in JS. There are several posibilities to organize loops in JavasCript, the most common are:
+ for statement do &amp;hellip; while statement while statement  They are pretty known, therefore, I think, I will not describe them here. What I really want to point here is that these statements do not perfectly suit requirements of game development. There are a lot of thing that should be built around these statements manually, the maijor of which is a frames synchronization (for more details about the synchronization please see Computer Graphics article).</description>
+    </item>
+    
   </channel>
 </rss>
