@@ -2,13 +2,13 @@
 <html lang="en">
   <head>
     
-      <title>Drawing Animation :: Inventing Games</title>
+      <title>Drawing an Animation :: Inventing Games</title>
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="description" content="Previous articles were focused on how to serve the user with a smooth animation, but there was no word about how to create it. This article aims at fixing this. I will review browser capabilities to draw an animation and mention some specific aspects that should be taken in consideration during its creation.
 How can we draw in a browser? There are at least three approaches available:
- CSS Animation HTML animations using JavaScript Canvas  CSS Animation."/>
+ CSS Animation HTML animation using JavaScript Canvas  CSS Animation."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="/posts/canvas/" />
@@ -25,12 +25,12 @@ How can we draw in a browser? There are at least three approaches available:
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Drawing Animation"/>
+<meta name="twitter:title" content="Drawing an Animation"/>
 <meta name="twitter:description" content="Drawing Animation"/>
 
 
 
-<meta property="og:title" content="Drawing Animation" />
+<meta property="og:title" content="Drawing an Animation" />
 <meta property="og:description" content="Drawing Animation" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/canvas/" />
@@ -102,7 +102,7 @@ How can we draw in a browser? There are at least three approaches available:
       <div class="content">
         
   <div class="post">
-    <h2 class="post-title"><a href="/posts/canvas/">Drawing Animation</a></h2>
+    <h2 class="post-title"><a href="/posts/canvas/">Drawing an Animation</a></h2>
     <div class="post-meta">
       
       <span class="post-author">— Written by Alexander Krupsky</span>
@@ -124,11 +124,11 @@ How can we draw in a browser? There are at least three approaches available:
 
 <ul>
 <li>CSS Animation</li>
-<li>HTML animations using JavaScript</li>
+<li>HTML animation using JavaScript</li>
 <li>Canvas</li>
 </ul>
 
-<h1 id="css-animation">CSS Animation.</h1>
+<h2 id="css-animation">CSS Animation.</h2>
 
 <p>CSS animation allows to animate an element transition from one CSS style configuration to another. For example, the code below allows us to make a heart to beat.</p>
 
@@ -258,9 +258,11 @@ How can we draw in a browser? There are at least three approaches available:
 
 <hr />
 
-<p>As you can see CSS animation is a pretty simple way to animate DOM elements. Unfortunately, if we are going to create a game, all these CSS transformations become a nightmare. Why? Because game consists of hundreds elements that interact with or influence each other. You have to be a genius to perform all required transformations at an appropriate time. Also, I cannot imagine how the user input can be processed. I&rsquo;m not genius, therefore I will look at the next animation approach that is called HTML animations using JavaScript.</p>
+<p>As you can see CSS animation is a pretty simple way to animate DOM elements. Unfortunately, if we are going to create a game, all these CSS transformations become a nightmare. Why? Because any game consists of hundreds elements that interact with or influence each other. You have to be a genius to perform all required transformations at an appropriate time. Also, I cannot imagine how the user input can be processed. I&rsquo;m not genius, therefore I will look at the next animation approach that is called HTML animation using JavaScript.</p>
 
-<h1 id="html-animations-using-javascript">HTML animations using JavaScript</h1>
+<h2 id="html-animation-using-javascript">HTML animation using JavaScript</h2>
+
+<p>HTML animation using JavaScript in its essence the same as CSS animation. All actions that we perform are to change a DOM element style and position. But there are much more available possibilities. We can manage timing with the help of setInterval or requestAnimationFrame functions and easily process the user input. Let&rsquo;s see how it works.</p>
 
 <pre><code class="language-html">&lt;!-- HTML --&gt;
 
@@ -332,93 +334,185 @@ How can we draw in a browser? There are at least three approaches available:
 &lt;/script&gt;
 </code></pre>
 
-<div id="draggable-container" class="js-example">
-    <div id="draggable-square">Drug Me</div>
-    <style>
-        #draggable-container{
-            height: 100px;
-        }
-        #draggable-square {
-            width: 40px;
-            height: 40px;
-            background-color: #FE5F55;
-            position: absolute;
-            text-align: center;
-            font-size: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-    </style>
-    <script type="text/javascript">
-        var isDragging = false;
-        var yd, xd = 0;
-        var element = document.getElementById('draggable-square');
-        var parent = document.getElementById('draggable-container');
-        var parentboundaries = parent.getBoundingClientRect();
+<p>The code above displays an element that the user can drag over the container.</p>
 
-        element.addEventListener('mousedown', function(e){
-            enabledraggable(e.x, e.y);
-            });
-        element.addEventListener('touchstart', function(e){
-            e.preventDefault();
-            if (e.touches.length > 0){
-                var x = e.touches[0].clientX;
-                var y = e.touches[0].clientY;
-                enabledraggable(x, y);
-            }
-        })
-
-        document.addEventListener('mousemove', function(e){
-            movedraggable(e.pageX, e.pageY);
-        });
-        document.addEventListener('touchmove', function(e){
-            e.preventDefault();
-            if (e.touches.length > 0){
-                var x = e.touches[0].pageX;
-                var y = e.touches[0].pageY;
-                movedraggable(x, y);
-            }
-        });
-
-        document.addEventListener('mouseup', disabledraggable);
-        document.addEventListener('touchend', disabledraggable);
-
-        function enabledraggable(x,y){
-            isDragging = true;
-
-            var boundaries = element.getBoundingClientRect();
-
-            yd = y - boundaries.top;
-            xd = x - boundaries.left;
-        }
-
-        function disabledraggable(e){
-            isDragging = false;
-            yd, xd = 0;
-        }
-
-        function movedraggable(px, py){
-            if (isDragging){
-                var y = py - yd;
-                var x = px - xd;
-                
-                if (y > parent.offsetTop && y < parent.offsetTop + parentboundaries.height - 40){
-                    element.style.top = y + 'px';
-                }
-
-                if (x > parentboundaries.left && x < parentboundaries.left + parentboundaries.width - 40){
-                    element.style.left = x + 'px';
-                }
-            }
-        }
-    </script>
+<div id="draggable-container" class="js-example draggable-container">
+    <div id="draggable-square" class="draggable-square">Drug Me</div>
 </div>
+
+<p>I&rsquo;ve tried to make the code as simple as possible, but some parts of it require a little explanation.</p>
+
+<pre><code class="language-js">//js
+
+yd = e.y - boundaries.top;
+xd = e.x - boundaries.left;
+
+...
+
+var y = e.pageY - yd;
+var x = e.pageX - xd;
+</code></pre>
+
+<p>Mouse event provides a cursor position. It means that if we do not take into account difference between the cursor position and the left top corner of the element, the element will go beyond top and left boundaries of the container. From the other side we need to take into consideration the element size (<code>40px</code>) to be sure that the element will not go beyond bottom and right boundaries of the container.</p>
+
+<pre><code class="language-js">//js
+
+parentboundaries.height - 40
+parentboundaries.width - 40
+</code></pre>
+
+<p>I hope that the code is clear now, so I propose to add some fun. Let&rsquo;s modify the code in the following way:</p>
+
+<pre><code class="language-js">//js
+
+//Make new global bariables
+var interval;
+var deg = 0;
+
+//Add set interval function to the end of enabledraggable handler
+interval = setInterval(function(){
+    deg = deg &gt; 360 ? 0 : deg + 10;
+
+    element.style.webkitTransform = 'rotate('+deg+'deg)'; 
+    element.style.mozTransform    = 'rotate('+deg+'deg)'; 
+    element.style.msTransform     = 'rotate('+deg+'deg)'; 
+    element.style.oTransform      = 'rotate('+deg+'deg)'; 
+    element.style.transform       = 'rotate('+deg+'deg)'; 
+}, 1000/60);
+
+//Add clear interval function to the end of disabledraggable handler
+clearInterval(interval);
+</code></pre>
+
+<div id="draggable-container-1" class="js-example draggable-container">
+    <div id="draggable-square-1" class="draggable-square">Drug Me</div>
+</div>
+
+<p>Now we have square that rotates during dragging. It is an amazing result with little efforts, isn&rsquo;t it?</p>
+
+<style>
+    .draggable-container{
+        height: 100px;
+    }
+    .draggable-square {
+        width: 40px;
+        height: 40px;
+        background-color: #FE5F55;
+        position: absolute;
+        text-align: center;
+        font-size: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+</style>
+
+<script type="text/javascript">
+    var isDragging = false;
+    var yd, xd = 0;
+    var element = document.getElementById('draggable-square-1');
+    var element1 = document.getElementById('draggable-square');
+    var interval;
+    var deg = 0;
+    var target;
+
+    element.addEventListener('mousedown', function(e){
+        target = e.target;
+        enabledraggable(e.x, e.y);
+    });
+
+    element.addEventListener('touchstart', function(e){
+        e.preventDefault();
+        target = e.target;
+        if (e.touches.length > 0){
+            var x = e.touches[0].clientX;
+            var y = e.touches[0].clientY;
+            enabledraggable(x, y);
+        }
+    });
+
+    element1.addEventListener('mousedown', function(e){
+        target = e.target;
+        enabledraggable(e.x, e.y);
+    });
+
+    element1.addEventListener('touchstart', function(e){
+        e.preventDefault();
+        target = e.target;
+        if (e.touches.length > 0){
+            var x = e.touches[0].clientX;
+            var y = e.touches[0].clientY;
+            enabledraggable(x, y);
+        }
+    });
+
+     element.addEventListener('mousedown', function(e){
+        interval = setInterval(function(){
+            deg = deg > 360 ? 0 : deg + 10;
+        
+            target.style.webkitTransform = 'rotate('+deg+'deg)'; 
+            target.style.mozTransform    = 'rotate('+deg+'deg)'; 
+            target.style.msTransform     = 'rotate('+deg+'deg)'; 
+            target.style.oTransform      = 'rotate('+deg+'deg)'; 
+            target.style.transform       = 'rotate('+deg+'deg)'; 
+        }, 1000/60);
+    });
+
+    document.addEventListener('mousemove', function(e){
+        movedraggable(e.pageX, e.pageY);
+    });
+    document.addEventListener('touchmove', function(e){
+        if (e.touches.length > 0){
+            var x = e.touches[0].pageX;
+            var y = e.touches[0].pageY;
+            movedraggable(x, y);
+        }
+    });
+
+    document.addEventListener('mouseup', disabledraggable);
+    document.addEventListener('touchend', disabledraggable);
+   
+    document.addEventListener('mouseup', function(){
+        clearInterval(interval);
+    });
+
+    function enabledraggable(x, y){
+        isDragging = true;
+
+        var boundaries = target.getBoundingClientRect();
+
+        yd = y - boundaries.top;
+        xd = x - boundaries.left;
+    }
+
+    function disabledraggable(e){
+        isDragging = false;
+        yd, xd = 0;
+    }
+
+    function movedraggable(px, py){
+        if (isDragging){
+            var y = py - yd;
+            var x = px - xd;
+            
+            var parent = target.parentElement;
+            var parentboundaries = parent.getBoundingClientRect();
+
+            if (y > parent.offsetTop && y < parent.offsetTop + parentboundaries.height - 40){
+                target.style.top = y + 'px';
+            }
+
+            if (x > parentboundaries.left && x < parentboundaries.left + parentboundaries.width - 40){
+                target.style.left = x + 'px';
+            }
+        }
+    }
+</script>
 
     </div>
     
