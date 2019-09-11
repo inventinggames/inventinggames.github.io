@@ -353,7 +353,7 @@ var y = e.pageY - yd;
 var x = e.pageX - xd;
 </code></pre>
 
-<p>Mouse event provides a cursor position. It means that if we do not take into account difference between the cursor position and the left top corner of the element, the element will go beyond top and left boundaries of the container. From the other side we need to take into consideration the element size (<code>40px</code>) to be sure that the element will not go beyond bottom and right boundaries of the container.</p>
+<p>Mouse event provides a cursor position. It means that if we do not take into account difference between the cursor position and the left top corner of the element, the element will go beyond top and left boundaries of the container. From the other side we need to take into consideration the element size (<code>40px</code>) to be sure that the element will not go beyond bottom and right boundaries.</p>
 
 <pre><code class="language-js">//js
 
@@ -388,7 +388,11 @@ clearInterval(interval);
     <div id="draggable-square-1" class="draggable-square">Drug Me</div>
 </div>
 
-<p>Now we have square that rotates during dragging. It is an amazing result with little efforts, isn&rsquo;t it?</p>
+<p>Now we have element that rotates during dragging. It is an amazing result with little efforts, isn&rsquo;t it?</p>
+
+<p>HTML animation using JavaScript is a</p>
+
+<p>What is wrong with it if we speak about game development?</p>
 
 <style>
     .draggable-container{
@@ -451,7 +455,7 @@ clearInterval(interval);
         }
     });
 
-     element.addEventListener('mousedown', function(e){
+    element.addEventListener('mousedown', function(e){
         interval = setInterval(function(){
             deg = deg > 360 ? 0 : deg + 10;
         
@@ -463,9 +467,26 @@ clearInterval(interval);
         }, 1000/60);
     });
 
+    element.addEventListener('touchstart', function(e){
+        interval = setInterval(function(){
+            deg = deg > 360 ? 0 : deg + 10;
+        
+            target.style.webkitTransform = 'rotate('+deg+'deg)'; 
+            target.style.mozTransform    = 'rotate('+deg+'deg)'; 
+            target.style.msTransform     = 'rotate('+deg+'deg)'; 
+            target.style.oTransform      = 'rotate('+deg+'deg)'; 
+            target.style.transform       = 'rotate('+deg+'deg)'; 
+        }, 1000/60);
+    });
+
+    document.addEventListener('touchend', function(e){
+       clearInterval(interval);
+    });
+
     document.addEventListener('mousemove', function(e){
         movedraggable(e.pageX, e.pageY);
     });
+
     document.addEventListener('touchmove', function(e){
         if (e.touches.length > 0){
             var x = e.touches[0].pageX;
