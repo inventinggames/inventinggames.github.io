@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Drawing Animation :: Inventing Games</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="Previous articles were focused on how to serve the user with a smooth animation, but there was no word about how to create it. This article aims at fixing this. I will review browser capabilities to draw an animation and mention some specific aspects that should be taken in consideration during its creation.
+How can we draw in a browser? There are at least three approaches available:
+ CSS Animation HTML animations using JavaScript Canvas  CSS Animation."/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="/posts/canvas/" />
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+
+<link rel="stylesheet" href="/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Drawing Animation"/>
+<meta name="twitter:description" content="Drawing Animation"/>
+
+
+
+<meta property="og:title" content="Drawing Animation" />
+<meta property="og:description" content="Drawing Animation" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/canvas/" />
+<meta property="og:site_name" content="Inventing Games" />
+
+
+
+<meta name="google-site-verification" content="HzRsPnBnAbhj4LSwxeW2lGGmq5cj8yZYsuDn9qO-9xo" />
+
+  </head>
+  <body class="">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
+  <polyline fill="none" stroke="#000" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">Inventing Games</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/#contents">Contents</a></li>
+        
+      
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/#contents">Contents</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  <div class="post">
+    <h2 class="post-title"><a href="/posts/canvas/">Drawing Animation</a></h2>
+    <div class="post-meta">
+      
+      <span class="post-author">— Written by Alexander Krupsky</span>
+      
+    </div>
+
+    
+
+    
+
+    <div class="post-content">
+      
+
+<p>Previous articles were focused on how to serve the user with a smooth animation, but there was no word about how to create it. This article aims at fixing this. I will review browser capabilities to draw an animation and mention some specific aspects that should be taken in consideration during its creation.</p>
+
+<h1 id="how-can-we-draw-in-a-browser">How can we draw in a browser?</h1>
+
+<p>There are at least three approaches available:</p>
+
+<ul>
+<li>CSS Animation</li>
+<li>HTML animations using JavaScript</li>
+<li>Canvas</li>
+</ul>
+
+<h1 id="css-animation">CSS Animation.</h1>
+
+<p>CSS animation allows to animate an element transition from one CSS style configuration to another. For example, the code below allows us to make a heart to beat.</p>
+
+<pre><code class="language-html">&lt;!-- HTML --&gt;
+
+&lt;div class=&quot;heart-container&quot;&gt;
+    &lt;div class=&quot;heart-img&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;style&gt;
+    .heart-container{
+        padding: 5px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .heart-img {
+        background-size: cover;
+        background-image: url('/img/Heart.png');
+
+        animation-duration: 0.5s;
+        animation-name: beats;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes beats{
+        from{
+            width: 75px;
+            height: 75px;
+        }
+
+        50% {
+            width: 100px;
+            height: 100px;
+        }
+
+        to{
+            width: 75px;
+            height: 75px;
+        }
+    }
+&lt;/style&gt;
+</code></pre>
+
+<div>
+    <div class="heart-container">
+        <div class="heart-img"></div>
+    </div>
+    <style>
+        .heart-container{
+            padding: 5px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .heart-img {
+            background-size: cover;
+            background-image: url('/img/Heart.png');
+
+            animation-duration: 0.5s;
+            animation-name: beats;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes beats{
+            from{
+                width: 75px;
+                height: 75px;
+            }
+
+            50% {
+                width: 100px;
+                height: 100px;
+            }
+
+            to{
+                width: 75px;
+                height: 75px;
+            }
+        }
+    </style>
+</div>
+
+<p>There are three important components of CSS animation should be pointed:</p>
+
+<ul>
+<li>Keyframes that represent waypoints that the animation should pass through (from; percentage from 0 to 100; to)</li>
+<li>Element style per keyframe that describes how the DOM element should look like when the animation reach this frame</li>
+<li>Animation properties that tell the browser how the animation should be performed</li>
+</ul>
+
+<p>Keyframes and element style components are well described in their definition and the example, therefore I will skip their further explanation and focus on animation properties, thank God, their list is very short:</p>
+
+<ul>
+<li><strong>animation-name</strong> specifies the name of the keyframes that should be applyed to DOM element</li>
+<li><strong>animation-duration</strong> specifies the length of time that an animation should take to complete one cycle</li>
+<li><strong>animation-timing-function</strong> specifies a function that responsible how the animation transitions through keyframes. Available functions are: ease, linear, ease-in, ease-out, ease-in-out, cubic-bezier, steps, step-start, step-end</li>
+<li><strong>animation-delay</strong> specifies the delay between the time DOM element is loaded and the beginning of the animation</li>
+<li><strong>animation-iteration-count</strong> specifies the number of times the animation should repeat</li>
+<li><strong>animation-direction</strong> specifies the direction of animation. Available options are: normal, reverse, alternate, and alternate-reverse</li>
+<li><strong>animation-fill-mode</strong> configures what style is applied by the animation before and after it is executing. Avalable options are: none, forwards, backwards, both</li>
+<li><strong>animation-play-state</strong> lets you pause and resume the animation</li>
+</ul>
+
+<hr />
+
+<p><span class="warning">
+    <span class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" viewBox="0 0 286.054 286.054" width="24px" height="24px">
+            <path d="M143.027,0C64.04,0,0,64.04,0,143.027c0,78.996,64.04,143.027,143.027,143.027
+                c78.996,0,143.027-64.022,143.027-143.027C286.054,64.04,222.022,0,143.027,0z M143.027,259.236
+                c-64.183,0-116.209-52.026-116.209-116.209S78.844,26.818,143.027,26.818s116.209,52.026,116.209,116.209
+                S207.21,259.236,143.027,259.236z M143.036,62.726c-10.244,0-17.995,5.346-17.995,13.981v79.201c0,8.644,7.75,13.972,17.995,13.972
+                c9.994,0,17.995-5.551,17.995-13.972V76.707C161.03,68.277,153.03,62.726,143.036,62.726z M143.036,187.723
+                c-9.842,0-17.852,8.01-17.852,17.86c0,9.833,8.01,17.843,17.852,17.843s17.843-8.01,17.843-17.843
+                C160.878,195.732,152.878,187.723,143.036,187.723z">
+            </path>
+        </svg>
+    </span>
+    <span class="message">
+        I have not set the goal to describe these properties in details, I have just tried to show you how the abilities of CSS animation is limited. If you require more details here, please look at <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations">developer.mozilla.org</a>.
+    </span>
+</span></p>
+
+<hr />
+
+<p>As you can see CSS animation is a pretty simple way to animate DOM elements. Unfortunately, if we are going to create a game, all these CSS transformations become a nightmare. Why? Because game consists of hundreds elements that interact with or influence each other. You have to be a genius to perform all required transformations at an appropriate time. Also, I cannot imagine how the user input can be processed. I&rsquo;m not genius, therefore I will look at the next animation approach that is called HTML animations using JavaScript.</p>
+
+<h1 id="html-animations-using-javascript">HTML animations using JavaScript</h1>
+
+<pre><code class="language-html">&lt;!-- HTML --&gt;
+
+&lt;div id=&quot;draggable-container&quot;&gt;
+    &lt;div id=&quot;draggable-square&quot;&gt;Drug Me&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+    #draggable-container{
+        height: 100px;
+        background-color: lightgray;
+    }
+    #draggable-square {
+        width: 40px;
+        height: 40px;
+        background-color: #FE5F55;
+        position: absolute;
+        text-align: center;
+        font-size: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+&lt;/style&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var isDragging = false;
+    var yd, xd = 0;
+    var element = document.getElementById('draggable-square');
+    var parent = document.getElementById('draggable-container');
+    var parentboundaries = parent.getBoundingClientRect();
+
+    element.addEventListener('mousedown', enabledraggable);
+    document.addEventListener('mousemove', movedraggable);
+    document.addEventListener('mouseup', disabledraggable);
+
+    function enabledraggable(e){
+        isDragging = true;
+
+        var boundaries = element.getBoundingClientRect();
+
+        yd = e.y - boundaries.top;
+        xd = e.x - boundaries.left;
+    }
+
+    function disabledraggable(){
+        isDragging = false;
+        yd, xd = 0;
+    }
+
+    function movedraggable(e){
+        if (isDragging){
+            var y = e.pageY - yd;
+            var x = e.pageX - xd;
+            
+            if (y &gt; parent.offsetTop &amp;&amp; y &lt; parent.offsetTop + parentboundaries.height - 40){
+                element.style.top = y + 'px';
+            }
+
+            if (x &gt; parentboundaries.left &amp;&amp; x &lt; parentboundaries.left + parentboundaries.width - 40){
+                element.style.left = x + 'px';
+            }
+        }
+    }
+&lt;/script&gt;
+</code></pre>
+
+<div id="draggable-container" class="js-example">
+    <div id="draggable-square">Drug Me</div>
+    <style>
+        #draggable-container{
+            height: 100px;
+        }
+        #draggable-square {
+            width: 40px;
+            height: 40px;
+            background-color: #FE5F55;
+            position: absolute;
+            text-align: center;
+            font-size: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+    <script type="text/javascript">
+        var isDragging = false;
+        var yd, xd = 0;
+        var element = document.getElementById('draggable-square');
+        var parent = document.getElementById('draggable-container');
+        var parentboundaries = parent.getBoundingClientRect();
+
+        element.addEventListener('mousedown', function(e){
+            enabledraggable(e.x, e.y);
+            });
+        element.addEventListener('touchstart', function(e){
+            e.preventDefault();
+            if (e.touches.length > 0){
+                var x = e.touches[0].clientX;
+                var y = e.touches[0].clientY;
+                enabledraggable(x, y);
+            }
+        })
+
+        document.addEventListener('mousemove', function(e){
+            movedraggable(e.pageX, e.pageY);
+        });
+        document.addEventListener('touchmove', function(e){
+            e.preventDefault();
+            if (e.touches.length > 0){
+                var x = e.touches[0].pageX;
+                var y = e.touches[0].pageY;
+                movedraggable(x, y);
+            }
+        });
+
+        document.addEventListener('mouseup', disabledraggable);
+        document.addEventListener('touchend', disabledraggable);
+
+        function enabledraggable(x,y){
+            isDragging = true;
+
+            var boundaries = element.getBoundingClientRect();
+
+            yd = y - boundaries.top;
+            xd = x - boundaries.left;
+        }
+
+        function disabledraggable(e){
+            isDragging = false;
+            yd, xd = 0;
+        }
+
+        function movedraggable(px, py){
+            if (isDragging){
+                var y = py - yd;
+                var x = px - xd;
+                
+                if (y > parent.offsetTop && y < parent.offsetTop + parentboundaries.height - 40){
+                    element.style.top = y + 'px';
+                }
+
+                if (x > parentboundaries.left && x < parentboundaries.left + parentboundaries.width - 40){
+                    element.style.left = x + 'px';
+                }
+            }
+        }
+    </script>
+</div>
+
+    </div>
+    
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="/posts/gameloopjs/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">Game Loop in JavaScript</span>
+                </a>
+              </span>
+              
+            
+              <span></span>
+            
+          </div>
+        </div>
+      
+
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "inventinggames" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </div>
+
+      </div>
+      
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <div></div>
+      <div class="copyright">
+        <span>© 2019</span>   
+      </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>
