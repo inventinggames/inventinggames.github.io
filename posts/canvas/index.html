@@ -6,7 +6,7 @@
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="description" content="Previous articles were focused on how to serve the user with a smooth animation, but there was no word about how to create it. This article aims at fixing this. I will review browser capabilities to draw an animation and mention some specific aspects that should be taken in consideration during its creation.
+<meta name="description" content="Previous articles were focused on how to serve the user with a smooth animation, but there was no word how to create it. This article aims at fixing this. I will review browser capabilities to draw an animation and mention some specific aspects that should be taken into consideration during its creation.
 How can we draw in a browser? There are at least three approaches available:
  CSS Animation HTML animation using JavaScript Canvas  CSS Animation."/>
 <meta name="keywords" content=""/>
@@ -34,7 +34,8 @@ How can we draw in a browser? There are at least three approaches available:
 <meta property="og:description" content="Drawing Animation" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/canvas/" />
-<meta property="og:site_name" content="Inventing Games" />
+<meta property="article:published_time" content="2019-09-13T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-09-13T00:00:00&#43;00:00"/><meta property="og:site_name" content="Inventing Games" />
 
 
 
@@ -105,6 +106,10 @@ How can we draw in a browser? There are at least three approaches available:
     <h2 class="post-title"><a href="/posts/canvas/">Drawing an Animation</a></h2>
     <div class="post-meta">
       
+        <span class="post-date">
+            2019-09-13
+        </span>
+      
       <span class="post-author">— Written by Alexander Krupsky</span>
       
     </div>
@@ -116,7 +121,7 @@ How can we draw in a browser? There are at least three approaches available:
     <div class="post-content">
       
 
-<p>Previous articles were focused on how to serve the user with a smooth animation, but there was no word about how to create it. This article aims at fixing this. I will review browser capabilities to draw an animation and mention some specific aspects that should be taken in consideration during its creation.</p>
+<p>Previous articles were focused on how to serve the user with a smooth animation, but there was no word how to create it. This article aims at fixing this. I will review browser capabilities to draw an animation and mention some specific aspects that should be taken into consideration during its creation.</p>
 
 <h1 id="how-can-we-draw-in-a-browser">How can we draw in a browser?</h1>
 
@@ -130,7 +135,7 @@ How can we draw in a browser? There are at least three approaches available:
 
 <h2 id="css-animation">CSS Animation.</h2>
 
-<p>CSS animation allows to animate an element transition from one CSS style configuration to another. For example, the code below allows us to make a heart to beat.</p>
+<p>CSS animation allows to animate an element transition from one CSS style configuration to another. For example, the code below allows us to make a heart beat.</p>
 
 <pre><code class="language-html">&lt;!-- HTML --&gt;
 
@@ -219,20 +224,20 @@ How can we draw in a browser? There are at least three approaches available:
 
 <ul>
 <li>Keyframes that represent waypoints that the animation should pass through (from; percentage from 0 to 100; to)</li>
-<li>Element style per keyframe that describes how the DOM element should look like when the animation reach this frame</li>
+<li>Element style per keyframe that describes how the DOM element should look like when the animation reaches this frame</li>
 <li>Animation properties that tell the browser how the animation should be performed</li>
 </ul>
 
 <p>Keyframes and element style components are well described in their definition and the example, therefore I will skip their further explanation and focus on animation properties, thank God, their list is very short:</p>
 
 <ul>
-<li><strong>animation-name</strong> specifies the name of the keyframes that should be applyed to DOM element</li>
-<li><strong>animation-duration</strong> specifies the length of time that an animation should take to complete one cycle</li>
-<li><strong>animation-timing-function</strong> specifies a function that responsible how the animation transitions through keyframes. Available functions are: ease, linear, ease-in, ease-out, ease-in-out, cubic-bezier, steps, step-start, step-end</li>
+<li><strong>animation-name</strong> specifies the name of the keyframes that should be applied to DOM element</li>
+<li><strong>animation-duration</strong> specifies the length of time that should take an animation to complete one cycle</li>
+<li><strong>animation-timing-function</strong> specifies a function that is responsible for how the animation transitions through keyframes. Available functions are: ease, linear, ease-in, ease-out, ease-in-out, cubic-bezier, steps, step-start, step-end</li>
 <li><strong>animation-delay</strong> specifies the delay between the time DOM element is loaded and the beginning of the animation</li>
 <li><strong>animation-iteration-count</strong> specifies the number of times the animation should repeat</li>
 <li><strong>animation-direction</strong> specifies the direction of animation. Available options are: normal, reverse, alternate, and alternate-reverse</li>
-<li><strong>animation-fill-mode</strong> configures what style is applied by the animation before and after it is executing. Avalable options are: none, forwards, backwards, both</li>
+<li><strong>animation-fill-mode</strong> configures what style is applied to the animation before and after it is executing. Avalable options are: none, forwards, backwards, both</li>
 <li><strong>animation-play-state</strong> lets you pause and resume the animation</li>
 </ul>
 
@@ -252,22 +257,22 @@ How can we draw in a browser? There are at least three approaches available:
         </svg>
     </span>
     <span class="message">
-        I have not set the goal to describe these properties in details, I have just tried to show you how the abilities of CSS animation is limited. If you require more details here, please look at <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations">developer.mozilla.org</a>.
+        I have not set the goal to describe these properties in details, I have just tried to show you how limited the abilities of CSS animation are. If you require more details here, please look at <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations">developer.mozilla.org</a>.
     </span>
 </span></p>
 
 <hr />
 
-<p>As you can see CSS animation is a pretty simple way to animate DOM elements. Unfortunately, if we are going to create a game, all these CSS transformations become a nightmare. Why? Because any game consists of hundreds elements that interact with or influence each other. You have to be a genius to perform all required transformations at an appropriate time. Also, I cannot imagine how the user input can be processed. I&rsquo;m not genius, therefore I will look at the next animation approach that is called HTML animation using JavaScript.</p>
+<p>As you can see, CSS animation is a pretty simple way to animate DOM elements. Unfortunately, if we are going to create a game, all these CSS transformations become a nightmare. Why? Because any game consists of hundreds of elements that interact with or influence each other. You have to be a genius to perform all the required transformations at appropriate time. Also, I cannot imagine how the user input can be processed. I&rsquo;m not a genius, therefore I will look at the next animation approach that is called HTML animation using JavaScript.</p>
 
 <h2 id="html-animation-using-javascript">HTML animation using JavaScript</h2>
 
-<p>HTML animation using JavaScript in its essence the same as CSS animation. All actions that we perform are to change a DOM element style and position. But there are much more available possibilities. We can manage timing with the help of setInterval or requestAnimationFrame functions and easily process the user input. Let&rsquo;s see how it works.</p>
+<p>HTML animation using JavaScript in its essence is the same as CSS animation. All actions that we perform are to change a DOM element style and position. But there are many more available possibilities. We can manage timing with the help of setInterval or requestAnimationFrame functions and easily process the user input. Let&rsquo;s see how it works.</p>
 
 <pre><code class="language-html">&lt;!-- HTML --&gt;
 
 &lt;div id=&quot;draggable-container&quot;&gt;
-    &lt;div id=&quot;draggable-square&quot;&gt;Drug Me&lt;/div&gt;
+    &lt;div id=&quot;draggable-square&quot;&gt;Drag Me&lt;/div&gt;
 &lt;/div&gt;
 
 &lt;style&gt;
@@ -337,10 +342,10 @@ How can we draw in a browser? There are at least three approaches available:
 <p>The code above displays an element that the user can drag over the container.</p>
 
 <div id="draggable-container" class="js-example draggable-container">
-    <div id="draggable-square" class="draggable-square">Drug Me</div>
+    <div id="draggable-square" class="draggable-square">Drag Me</div>
 </div>
 
-<p>I&rsquo;ve tried to make the code as simple as possible, but some parts of it require a little explanation.</p>
+<p>I&rsquo;ve tried to make the code as simple as possible, but some parts of it require a little of explanation.</p>
 
 <pre><code class="language-js">//js
 
@@ -353,7 +358,7 @@ var y = e.pageY - yd;
 var x = e.pageX - xd;
 </code></pre>
 
-<p>Mouse event provides a cursor position. It means that if we do not take into account difference between the cursor position and the left top corner of the element, the element will go beyond top and left boundaries of the container. From the other side we need to take into consideration the element size (<code>40px</code>) to be sure that the element will not go beyond bottom and right boundaries.</p>
+<p>Mouse event provides a cursor position. It means that if we do not take into account difference between the cursor position and the left top corner of the element, the element will go beyond top and left boundaries of the container. On the other hand, we need to take into consideration the element size (<code>40px</code>) to be sure that the element will not go beyond bottom and right boundaries.</p>
 
 <pre><code class="language-js">//js
 
@@ -385,14 +390,165 @@ clearInterval(interval);
 </code></pre>
 
 <div id="draggable-container-1" class="js-example draggable-container">
-    <div id="draggable-square-1" class="draggable-square">Drug Me</div>
+    <div id="draggable-square-1" class="draggable-square">Drag Me</div>
 </div>
 
-<p>Now we have element that rotates during dragging. It is an amazing result with little efforts, isn&rsquo;t it?</p>
+<p>Now we have element that rotates during dragging. It is an amazing result with little effort, isn&rsquo;t it?</p>
 
-<p>HTML animation using JavaScript is a</p>
+<p>To sum up, I would like to mention that HTML animation using JavaScript is a powerfull approach. It allows to utilize CSS animation with ability to process the user input, but&hellip; is it enough to make a game? Perhaps. In some cases it is, for example if you would like to create a flying and rotating square. But what to do if you are going to create a snow falling from the sky? There are hundreds of snowflakes each of which can have its own trajectory depending on wind and other snowflakes. I don&rsquo;t think that this kind of animation can be performed well with this approach, because when you make changes to DOM that triggers re-painting of the layout, the browser performance starts to slow down, especially if you do a lot of manipulations at once. What can we do? We can try to optimize our code or, and I think it is a better decision, to look at a canvas element.</p>
 
-<p>What is wrong with it if we speak about game development?</p>
+<h2 id="canvas">Canvas</h2>
+
+<p>Canvas is a DOM element that allows to draw graphics via JavaScript. It can be used for drawing, animation, and pictures manipulations. Moreover, it can be used for real-time video processing! Amazing! The canvas mostly focuses on 2D graphics, but there are accelerators available to draw in 3D (for now 3D graphics and real-time video processing are out of scope of this blog, therefore I will not review their features).</p>
+
+<p>So, how can we draw on canvas? First of all you need to add <code>canvas</code> element to the page.</p>
+
+<pre><code class="language-html">&lt;!-- HTML --&gt;
+
+&lt;canvas id=&quot;example-canvas&quot; width=&quot;400px&quot; heigh=&quot;400px&quot; style=&quot;background-color: #292a2d&quot;&gt;&lt;/canvas&gt;
+</code></pre>
+
+<p>Then you need to initialize canvas context.</p>
+
+<pre><code class="language-js">//js
+
+var example = document.getElementById(&quot;example-canvas&quot;);
+var ctx = example.getContext('2d');
+</code></pre>
+
+<p>After that you can use numerous functions to draw any combination of elements, for example, circles that represent snowflakes mentioned above (to see available drawing functions please look at <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">developer.mozila.org</a> documentation).</p>
+
+<canvas id="example-canvas" heigh="100px" style="background-color: #212020"></canvas>
+
+<p>It looks complicated, but it is not true. At first, we need to create an object that represents a snowflake and the method that is responsible for its drawing.</p>
+
+<pre><code class="language-js">//js
+
+function Snowflake(x, y, r){
+    this.x = x;
+    this.y = y;
+    this.radius = r;
+
+    this.draw = function(){
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, 0);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+    }
+}
+</code></pre>
+
+<p>Then we need to create an array of snowflakes that should be displayed on the canvas and fill it with predefined quantity of snowflakes with random position and radius (for beauty).</p>
+
+<pre><code class="language-js">//js
+var snowflakes = [];
+var count = 1000;
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+for(var i = 0; i &lt;= count; i++){
+    var x = getRandomInt(0, ctx.canvas.width);
+    var y = getRandomInt(0, ctx.canvas.height);
+    var r = getRandomInt(1, 3) * 0.7;
+
+    var snowflake = new Snowflake(x, y, r);
+
+    snowflakes.push(snowflake);
+}
+</code></pre>
+
+<p>And the last thing that we need to do is to draw these snowflakes.</p>
+
+<pre><code class="language-js">//js
+
+function draw(){
+    for(var i = 0; i &lt; count; i++){
+        snowflakes[i].draw();
+    }
+}
+
+draw();
+</code></pre>
+
+<p>If I have not missed anything, on the screen you should see a black rectangle with a lot of white circles that now look like stars rather than snowflakes. To fix it, we need to allow the snowflakes to fall. For this we can add some velocity for the each snowlake. I propose to calculate velocity based on a snowflake radius, the bigger radius the higher velocity. Also, I propose to divide it by 2 to make the motion slow.</p>
+
+<pre><code class="language-js">//js
+
+function Snowflake(x, y, r){
+    ...
+    this.velocity = r/2;
+    ...
+}
+
+</code></pre>
+
+<p>Ok. Now we have the velocity, but how can it be applied? In our case, the snowlakes should fall, therefore all that we need is to simply increase <code>y</code> coordinate after or before each draw operation.</p>
+
+<pre><code class="language-js">//js
+
+function Snowflake(x, y, r){
+    ...
+    this.draw = function(){
+        this.y = this.y + this.velocity;
+        ...
+    }
+    ...
+}
+</code></pre>
+
+<p>And the last step, we need to implement a game loop with the help of requestAnimationFrame.</p>
+
+<pre><code class="language-js">//js
+
+function draw(){
+    //clear canvas from the previous frame.
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for(var i = 0; i &lt; count; i++){
+        snowflakes[i].draw();
+    }
+
+    window.requestAnimationFrame(draw);
+}
+
+window.requestAnimationFrame(draw);
+
+</code></pre>
+
+<p>What happens when a snowflake goes beyond the bottom boundary of the canvas? It is continuing to fall. We don&rsquo;t see it, but its position is still calculated and draw function still tries to draw it. I don&rsquo;t think that it is a correct behaviour, therefore I propose to get this kind of snowflakes and set their <code>y</code> coordinate to zero. This will allow us to create the feeling of endlessly falling snow. So, let&rsquo;s modify again the draw method of snowflake object.</p>
+
+<pre><code class="language-js">//js
+
+function Snowflake(x, y, r){
+    ...
+    this.draw = function(){
+        this.y = this.y + this.velocity;
+        if (this.y &gt; ctx.canvas.height){
+            this.y = 0;
+        }
+        ...
+    }
+    ...
+}
+
+</code></pre>
+
+<p>Amazing! We have endless falling snow with minimum efforts. Drawing with the Canvas is an enchanting approach, because even if we increase the quantity of snowflakes up to 10.000 it will still work fast and without any delay or performance issue.</p>
+
+<h2 id="recap">Recap</h2>
+
+<p>There are at least three approaches to draw in the browser:</p>
+
+<ul>
+<li>CSS Animation</li>
+<li>HTML animation using JavaScript</li>
+<li>Canvas</li>
+</ul>
+
+<p>CSS animation is good if you are going to make a simple animation that does not require the user input. In other case, HTML animation using JavaScript can be useful. But they both have gaps in case if you are trying to make complex or resource consuming animation. For such animation, Canvas will suit better.</p>
 
 <style>
     .draggable-container{
@@ -533,6 +689,59 @@ clearInterval(interval);
             }
         }
     }
+    
+    var canvas = document.getElementById("example-canvas");
+    var ctx = canvas.getContext('2d');
+    var snowflakes = [];
+    var count = 500;
+    
+    canvas.width = canvas.parentElement.offsetWidth;
+
+    function Snowflake(x, y, r){
+        this.x = x;
+        this.y = y;
+        this.radius = r;
+        this.velocity = r/2;
+    
+        this.draw = function(){
+            this.y = this.y + this.velocity;
+            if (this.y > ctx.canvas.height){
+                this.y = 0;
+            }
+
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, 0);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+        }
+    }
+
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+    
+    for(var i = 0; i < count; i++){
+        var x = getRandomInt(0, ctx.canvas.width);
+        var y = getRandomInt(0, ctx.canvas.height);
+        var r = getRandomInt(1, 3) * 0.7;
+    
+        var snowflake = new Snowflake(x, y, r);
+    
+        snowflakes.push(snowflake);
+    }
+
+    function draw(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for(var i = 0; i < count; i++){
+            snowflakes[i].draw();
+        }
+        
+        window.requestAnimationFrame(draw);
+    }
+    
+    window.requestAnimationFrame(draw);
 </script>
 
     </div>

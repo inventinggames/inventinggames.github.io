@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© {year}</copyright>
-    <lastBuildDate>Mon, 02 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 13 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Drawing an Animation</title>
+      <link>/posts/canvas/</link>
+      <pubDate>Fri, 13 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/canvas/</guid>
+      <description>Previous articles were focused on how to serve the user with a smooth animation, but there was no word how to create it. This article aims at fixing this. I will review browser capabilities to draw an animation and mention some specific aspects that should be taken into consideration during its creation.
+How can we draw in a browser? There are at least three approaches available:
+ CSS Animation HTML animation using JavaScript Canvas  CSS Animation.</description>
+    </item>
     
     <item>
       <title>Game Loop in JavaScript</title>
